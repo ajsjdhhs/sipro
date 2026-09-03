@@ -24,7 +24,7 @@ logger = logging.getLogger("sipro.analytics")
 # Susunan dashboard: persona -> daftar kode metrik (urutan = urutan tampil).
 DASHBOARDS = {
     "eksekutif": ["SLS-01", "SLS-03", "SLS-05", "SLS-06", "SLS-04", "SLS-02",
-                  "BGT-04", "BGT-05", "BGT-06", "PRC-01",
+                  "BGT-04", "BGT-05", "BGT-06", "RAB-02", "RAB-03", "PRC-01",
                   "PRJ-01", "PRJ-04", "PRJ-09", "LED-08", "MKT-03", "LED-14"],
     "penjualan": ["LED-01", "LED-02", "LED-07", "LED-04", "LED-05", "LED-06",
                   "LED-13", "LED-10", "LED-03", "LED-15", "LED-12", "LED-11",
@@ -32,7 +32,8 @@ DASHBOARDS = {
                   "PRC-01", "PRC-02", "PRC-03", "PRC-04"],
     "marketing": ["MKT-01", "LED-09", "LED-08", "MKT-02", "MKT-03", "MKT-04", "MKT-05"],
     "proyek": ["PRJ-01", "PRJ-02", "PRJ-03", "PRJ-04", "PRJ-05", "PRJ-06", "PRJ-07",
-               "PRJ-08", "PRJ-09", "BGT-01", "BGT-02", "BGT-03"],
+               "PRJ-08", "PRJ-09", "BGT-01", "BGT-02", "BGT-03",
+               "RAB-01", "RAB-04", "RAB-05", "RAB-06"],
     "tim": ["USR-01", "USR-02", "USR-03", "USR-04", "USR-05", "USR-06", "USR-07"],
 }
 # Metrik yang di-snapshot harian (periode besar) — lihat `metrics.REGISTRY[...]["snapshot"]`.

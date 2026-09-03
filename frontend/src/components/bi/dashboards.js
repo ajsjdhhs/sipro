@@ -23,6 +23,10 @@ export function ExecutiveDashboard({ params }) {
           description: "Dibandingkan dengan target AKTIF; realisasi dibaca dari deal yang benar-benar tercatat." },
         { code: "PRC-01", title: "Potongan diberikan per proyek",
           description: "Σ skema diskon + promo + kupon dari rincian harga yang TERSIMPAN pada deal." },
+        { code: "RAB-02", title: "Margin HPP proyeksi per proyek (RAB terstruktur)",
+          description: "Harga jual + add-on terjual − RAB (tipe × unit + add-on + fasum + umum). Angka yang sama dengan RAB/BoQ › Ringkasan & HPP." },
+        { code: "RAB-03", title: "Margin HPP per tipe unit (%)",
+          description: "Tipe bermargin tipis (<10%) tampil di rincian — HPP = RAB tipe + alokasi biaya bersama." },
         { code: "PRJ-04", title: "Realisasi terhadap RAB per kategori" },
       ]} />
   );
@@ -93,6 +97,14 @@ export function ProjectCostDashboard({ params }) {
           description: "Exposure = realisasi + komitmen. Dipakai untuk peringatan dini sebelum tagihannya masuk." },
         { code: "BGT-03", title: "Item anggaran overbudget" },
         { code: "PRJ-09", title: "Komitmen belum tertagih per vendor" },
+        { code: "RAB-01", kind: "pie", title: "Komposisi RAB terstruktur",
+          description: "RAB unit (tipe × unit) · add-on terjual · fasum/fasos · umum · item lama." },
+        { code: "RAB-04", title: "SPK fasum: termin disetujui vs progres fase",
+          description: "Nilai = termin kumulatif %; rincian memuat batas dari progres fase konstruksi tertaut. Baris merah = melampaui." },
+        { code: "RAB-05", title: "Selisih SPK terhadap dasar RAB",
+          description: "Override beralasan saat SPK dibuat dari RAB — positif = kontrak di atas RAB." },
+        { code: "RAB-06", kind: "series", title: "Revisi RAB tipe/add-on per hari",
+          description: "Setiap Simpan yang mengubah baris RAB tercatat sebagai versi; rincian per tipe memuat arah perubahan total." },
       ]} />
   );
 }

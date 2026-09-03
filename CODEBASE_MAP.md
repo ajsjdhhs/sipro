@@ -1733,6 +1733,12 @@ gate 47 (K10b2, K10b3, D14b) + mutan M14/M47/M48.
   Field dwi-mode (%/Rp) merender salah satu lewat ternary sesuai basis.
 - `scripts/convert_rupiah_inputs.py`: daftar 70 field yang dikonversi (file:baris) — riwayat migrasi, tidak dijalankan ulang.
 
+## Fase 81b — RAB terstruktur di BI & Analitik (SELESAI)
+- `metrics/rab.py` (RAB-01..06, membungkus `rab_engine.project_summary` / `fasum_control` / `spk.rab_lines` / `rab_template_versions`),
+  terdaftar di `metrics/__init__.py`; `analytics_engine.DASHBOARDS` eksekutif +RAB-02/03, proyek +RAB-01/04/05/06; `budget_reports.margin`
+  memakai `project_summary.total_rab`. Frontend `components/bi/dashboards.js` (grafik RAB di Executive & ProjectCost). Spec `docs/v2/31` §5.
+- Uji: `backend/tests/test_p81b_rab_metrics.py` (4); gate `scripts/verify_analytics.py`.
+
 ## Fase 81 — Versi RAB, salin dari tipe lain, impor Excel, kendali fasum vs progres fase (SELESAI & TERVERIFIKASI)
 - **Backend:** `rab_templates_ext.py` (`list_versions`, `get_version`, `restore_version`, `copy_items`, `import_workbook`, `parse_import`);
   `rab_engine.py` (`save_template` mencatat versi ke koleksi `rab_template_versions` + `version`/`note` di `rab_templates`; `fasum_phase_cap`,

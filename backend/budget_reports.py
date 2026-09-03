@@ -53,9 +53,10 @@ async def margin(org: str, project_id: str) -> dict:
                                       {"_id": 0}).to_list(4000) if unit_ids else []
     cash_in = sum(be._i(r.get("amount")) for r in receipts)
 
-    boq = await db.boq_items.find({"org_id": org, "project_id": project_id},
-                                  {"_id": 0, "amount": 1}).to_list(4000)
-    rab_total = sum(be._i(b.get("amount")) for b in boq)
+    # Fase 81b: RAB total = RAB terstruktur (tipe × unit + add-on terjual + fasum/umum + item lama),
+    # bukan lagi Σ boq_items flat — supaya margin proyeksi di BI sama dengan Ringkasan & HPP.
+    import rab_engine as re_
+    rab_total = (await re_.project_summary(org, project_id))["total_rab"]
     opex_total = sum(be._i(i["planned"]) for i in summary["items"]
                      if i["category"] != be.CONSTRUCTION)
     sellable = sum(be._i(u.get("price")) for u in units)

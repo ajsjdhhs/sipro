@@ -20,11 +20,12 @@ from metrics import leads as _leads
 from metrics import marketing as _marketing
 from metrics import pricing as _pricing
 from metrics import project as _project
+from metrics import rab as _rab
 from metrics import sales as _sales
 from metrics import team as _team
 from metrics.base import PERSONAS, UNITS, result  # noqa: F401  (re-export kontrak)
 
-MODULES = (_sales, _leads, _marketing, _project, _team, _budget, _pricing)
+MODULES = (_sales, _leads, _marketing, _project, _team, _budget, _pricing, _rab)
 
 REGISTRY: dict = {}
 for _m in MODULES:

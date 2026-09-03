@@ -537,6 +537,11 @@ Bahasa produk & komunikasi: **Indonesia**.
 - Ikutan: kolom Kredit jurnal manual dilebarkan; SheetTitle saat loading (ProjectsPage, AppointmentDetailSheet) → 0 console error Radix.
 - Uji: iteration_129 100% lulus (masker + 5 alur simpan end-to-end).
 
+## 2026-09 (3 Sep) — Fase 81b: RAB terstruktur masuk BI & Analitik
+- Modul metrik baru `metrics/rab.py` (RAB-01..06) membungkus `rab_engine` — angka BI = angka `/boq` › Ringkasan & HPP: RAB-01 RAB total terstruktur (komposisi unit/add-on/fasum/umum/lama), RAB-02 margin HPP proyeksi, RAB-03 margin HPP per tipe (+ unit margin tipis <10%), RAB-04 SPK fasum melampaui progres fase, RAB-05 selisih SPK vs dasar RAB (override), RAB-06 revisi RAB tipe/add-on (versi, deret harian). Kejujuran: unit tanpa RAB tipe → `coverage`/`sebagian`, tanpa data → `kosong`.
+- Dashboard: eksekutif +RAB-02, RAB-03; proyek +RAB-01 (pie), RAB-04, RAB-05, RAB-06 (deret). Snapshot harian untuk RAB-01..05. `BGT-06` margin proyeksi kini memakai RAB terstruktur (`project_summary.total_rab`), bukan Σ `boq_items` flat. Spec `docs/v2/31` §5 diperbarui.
+- Uji: `tests/test_p81b_rab_metrics.py` 4/4; gate `scripts/verify_analytics.py` PASSED (63 metrik, 40 snapshot); layar BI eksekutif & proyek merender grafik RAB.
+
 ## 2026-09 (3 Sep) — Fase 81: Versi RAB (riwayat + pulihkan), salin dari tipe lain, impor Excel, kendali fasum vs progres fase
 - Menyelesaikan 3 dari 4 "tugas berikutnya sesudah Fase 80": (1) Gate 61 `scripts/verify_p80_81.py` 32/32 → `run_all_gates.sh`; (2) kendali fasum: termin SPK fasum lump-sum ≤ progres fase konstruksi tertaut (ditolak 400 dengan pesan fase/batas; batas ikut naik saat fase maju; tabel kendali di Ringkasan & HPP; hint di dialog Ajukan Termin); (3) RAB tipe/add-on: setiap Simpan yang mengubah baris menyimpan versi lama (`rab_template_versions`) + catatan perubahan, riwayat dengan selisih total, Pulihkan; salin dari tipe lain × faktor harga (pratinjau → Simpan); impor Excel (template unduh + pratinjau tervalidasi dengan kesalahan/peringatan).
 - Backend: `rab_templates_ext.py` (baru), `rab_engine.py` (save_template versi, fasum_phase_cap/fasum_control), `routers/rab_router.py`, `routers/subcon_claims_router.py`. Frontend: `boq/{RabTemplateTools,RabVersionHistory,RabFasumControl}.js`, `RabTemplateDialog`, `RabTypePanel`, `RabSummaryPanel`, `subcon/SubmitClaimDialog`; testIds `p81.js`.

@@ -72,6 +72,14 @@ Setiap fungsi metrik mengembalikan `{value, breakdown[], inputs{}, complete: boo
 | `PRJ-07` | Margin proyek | `pendapatan diakui − (RAB realisasi + budget operasional realisasi)` |
 | `PRJ-08` | Proyeksi selesai | dari kecepatan progres + kalender kerja (mesin Fase 36/37) |
 | `PRJ-09` | Komitmen belum tertagih | `Σ PO open` (agar overbudget tidak terlambat terlihat) |
+| `RAB-01` | **RAB total terstruktur** (Fase 81b) | `Σ (RAB tipe × unit) + RAB add-on terjual + fasum/fasos + umum + item lama` — `rab_engine.project_summary` |
+| `RAB-02` | **Margin HPP proyeksi** | `(harga jual seluruh unit + add-on terjual) − RAB total terstruktur` (persona eksekutif) |
+| `RAB-03` | Margin HPP per tipe unit | `(Σ harga jual − Σ HPP) / Σ harga jual` per tipe; HPP = RAB tipe + alokasi biaya bersama; unit <10% dihitung sebagai margin tipis |
+| `RAB-04` | **SPK fasum melampaui progres fase** | `count(termin disetujui % > progres fase konstruksi tertaut %)` — `rab_engine.fasum_control` |
+| `RAB-05` | Selisih SPK terhadap RAB | `Σ (nilai kontrak SPK − dasar RAB)` pada SPK yang lahir dari RAB (`spk.rab_lines`, `override_count`) |
+| `RAB-06` | Revisi RAB tipe/add-on | `count(rab_template_versions.replaced_at ∈ rentang)` + selisih total versi pertama → aktif per tipe |
+
+> Catatan Fase 81b: `BGT-06` (margin proyeksi) kini memakai RAB total terstruktur yang sama dengan `RAB-01`, bukan lagi `Σ boq_items` flat.
 
 ## 6. Kamus metrik — KINERJA USER (permintaan owner: laporan harian per user)
 

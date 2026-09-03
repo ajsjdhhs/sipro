@@ -412,6 +412,14 @@ Sesi sebelumnya terputus di tengah penutupan temuan uji iterasi 102. Yang dilaku
 3. Kendali fasum: pengingat otomatis ke PM saat termin fasum tertahan oleh progres fase; dashboard progres fase vs termin lintas proyek.
 4. Backlog lama: engine.py 821>800 (pecah modul), mutasi 53/54/56, audit form `<Input>` tanpa label di 6 file (CostComponentPanel, KprDisbursementSchemePanel, PaymentSchemePanel, CostBillingPanel, KprPanel, SpkFromRabDialog).
 
+## 3x) Fase 81b — RAB terstruktur masuk BI & Analitik (SELESAI)
+
+| Bagian | Status |
+|---|---|
+| `metrics/rab.py`: RAB-01 RAB total terstruktur (idr, komposisi), RAB-02 margin HPP proyeksi (idr), RAB-03 margin HPP per tipe (pct, unit tipis <10%), RAB-04 SPK fasum melampaui progres fase (count), RAB-05 selisih SPK vs RAB (idr), RAB-06 revisi RAB (count + deret harian, ikut rentang tanggal). Semua punya drill, formula, requires; snapshot RAB-01..05 | **SELESAI** |
+| Dashboard eksekutif +RAB-02/03, proyek +RAB-01/04/05/06 (`analytics_engine.DASHBOARDS`, `bi/dashboards.js`); `BGT-06` memakai RAB terstruktur | **SELESAI** |
+| Uji: `tests/test_p81b_rab_metrics.py` (4), `scripts/verify_analytics.py` PASSED, layar BI dicek | **SELESAI** |
+
 ## 3w) Fase 81 — Versi RAB, salin dari tipe lain, impor Excel, kendali fasum vs progres fase (SELESAI)
 
 | Bagian | Status |
